@@ -91,42 +91,33 @@ contract TicTacToeGame {
     function placeMove(uint8 _location) external {
 
         //This will check if the game is over or is still active by checking the isGameOver flag and the winner address
-        /*Add you code here*/
         require(_isGameOver!=true || _winner==address(0),"game already over");
 
         //This will check if the game is draw or is still active by checking the isGameOver flag
-        /*Add you code here*/
         require(_isGameOver==false,"game drawn. startGame again");
 
         //This will check if the transaction is made from some other system(having different address other then that of players) apart from both the players
-        /*Add you code here*/
         require(msg.sender==_playerOne || msg.sender==_playerTwo,"unauthorized player");
 
         //While placing the move, we will check if the move at the specified location is already taken of not
-        /*Add you code here*/
         require(_location<_gameBoard.length, "invalid location");
         require(_playerTwo!=address(0),"require player2");
         require(_gameBoard[_location]==address(0),"move already done");
 
         //This condition is to check if the last played player is again the turn or is the turn given to the next player inline
-        /*Add you code here*/
         require(_lastPlayed!=msg.sender,"not your turn");
         
         //Saving the player's address on the required location.
-        /*Add you code here*/
         _gameBoard[_location] = msg.sender;
 
         //Saving the current player's address in the last played variable so as to keep the track of the latest plater which exercised the move
-        /*Add you code here*/
         _lastPlayed = msg.sender;
 
         //Tracking the number of turns
-        /*Add you code here*/
         // using unchecked and pre-increment (++i, rather than i++), to save gas
         unchecked{++_turnsTaken;}
         
         //Checking if the game lead to the winner after the current move and accordingly updating the winner and isGameOver flag
-        /*Add you code here*/
         // avoiding the "true == isWinner..." construct to save gas
         if ( isWinner(msg.sender) ){
             _isGameOver = true;
@@ -135,7 +126,6 @@ contract TicTacToeGame {
         }
         
         //For checking if the game is draw
-        /*Add you code here*/
         if (9 == _turnsTaken ){
             _isGameOver = true;
         }
@@ -150,7 +140,6 @@ contract TicTacToeGame {
             [0,4,8],[2,4,6]           // winning diagonal filters
         ];
         
-        /*Add you code here*/
         // winner cannot be of 0 address!
         if ( address(0) == player ){
             return false;
