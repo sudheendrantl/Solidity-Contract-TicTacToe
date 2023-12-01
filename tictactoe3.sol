@@ -58,7 +58,6 @@ contract TicTacToeGame {
     //Function will start the game by taking the address of the second player. 
     //The address of the first player will be the same one which will initiate the game.
     function startGame(address _player2) external {
-        /*Add you code here*/
         // dont permit player1 and player2 to be the same
         // also dont accept 0 address for player2
         require(_player2!=address(0),"player2 address cannot be 0");
